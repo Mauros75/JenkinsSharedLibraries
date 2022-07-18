@@ -1,5 +1,8 @@
 def call(String stageName) {
-    if ("${stageName}" == 'Build') {
+    if ("${stageName}" == 'gitClone') {
+    checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Mauros75/nodejs-application']]])    
+    }
+    else if ("${stageName}" == 'Build') {
         sh 'mvn clean install'
     }
     else if ("${stageName}" == 'CodeQuality') {
@@ -14,6 +17,8 @@ def call(String stageName) {
     // some block
     input message: 'Approve or decline'
 }
+        
+    }
     else if ("${stageName}" == 'deploy') {
         sh 'echo app now ready for deployment'
         sh 'scp -i *.war ec2-user@172.10.2:/opt/tomcta9/webapps/'
