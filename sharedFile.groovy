@@ -1,6 +1,6 @@
 def call(String stageName) {
     if ("${stageName}" == 'gitClone') {
-    checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Mauros75/nodejs-application']]])    
+    checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Mauros75/web-applicationz']]])    
     }
     else if ("${stageName}" == 'Build') {
         sh 'mvn clean install'
